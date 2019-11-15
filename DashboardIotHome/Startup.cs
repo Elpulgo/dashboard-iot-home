@@ -83,6 +83,7 @@ namespace DashboardIotHome
                 app.UseHsts();
             }
 
+            app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseRouting();
 
