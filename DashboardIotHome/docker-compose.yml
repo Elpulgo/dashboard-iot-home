@@ -1,0 +1,22 @@
+
+version: '3.5'
+
+services:
+  backend:
+    restart: always
+    privileged: true
+    container_name: backend-iot
+    ports:      
+      - "8080:80"
+    networks:
+      - overlay
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ~/iot-dashboard/data:/app/data
+    env_file:
+      - ./.env   
+
+networks:
+  overlay:
