@@ -1,0 +1,22 @@
+.wunderlist-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.list-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.tasks{
+    display: flex;
+    flex-direction: column;
+}
+
+.task-row{
+    border: 1px solid #333;
+    border-radius: 5px;
+    margin: 0.3rem;
+    padding: 0.2rem;
+    background-color: #e3e7f1;
+}

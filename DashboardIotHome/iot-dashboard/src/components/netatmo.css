@@ -1,0 +1,34 @@
+.netatmo-current-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+}
+
+.data{
+    font-weight: bold;
+    float:right;
+}
+
+.header{
+    font-size: large;
+}
+
+.module-header{
+    color: #484c7f;
+}
+
+.current-row-container{
+    min-width: 250px;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.netatmo-current-container_mobile{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
