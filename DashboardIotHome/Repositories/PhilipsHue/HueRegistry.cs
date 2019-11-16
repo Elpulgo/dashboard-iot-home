@@ -103,7 +103,7 @@ namespace DashboardIotHome.Repositories.PhilipsHue
             catch (LinkButtonNotPressedException linkButtonNotPressedException)
             {
                 Log.Error(linkButtonNotPressedException, $"You must press button on bridge first time before connecting!");
-                return null;
+                throw;
             }
             catch (Exception exception)
             {
