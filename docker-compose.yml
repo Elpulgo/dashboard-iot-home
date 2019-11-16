@@ -1,0 +1,32 @@
+
+version: '3.5'
+
+services:
+  backend:
+    restart: always
+    privileged: true
+    container_name: backend-iot
+    ports:      
+      - "8080:80"
+    networks:
+      - overlay
+    build:
+      context: .
+      dockerfile: DashboardIotHome/Dockerfile
+    volumes:
+      - ~/iot-dashboard/data:/app/data
+    enivornment:
+      - Netatmo__ClientId=
+      - Netatmo__ClientSecret=
+      - Netatmo__DeviceId=
+      - Netatmo__UserName=
+      - Netatmo__Password=
+      - Netatmo__OutdoorModuleId=
+      - Wunderlist__ClientId=
+      - Wunderlist__AccessToken=
+      - WunderList__ListFirst=
+      - WunderList__ListSecond=
+      - PhilipsHue__BridgeIp=
+
+networks:
+  overlay:
