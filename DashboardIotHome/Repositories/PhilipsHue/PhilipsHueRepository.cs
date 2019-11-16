@@ -27,9 +27,8 @@ namespace DashboardIotHome.Repositories.PhilipsHue
             catch (Exception exception)
             {
                 Log.Error(exception, $"Failed to get lights from Philips Hue '{exception.Message}'");
+                throw;
             }
-
-            return null;
         }
     }
 }
