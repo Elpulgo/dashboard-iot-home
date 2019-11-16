@@ -64,9 +64,8 @@ namespace DashboardIotHome.Repositories.Wunderlist
             catch (Exception exception)
             {
                 Log.Error(exception, $"Failed to get lists from Wunderlist: '{exception.Message}'");
+                throw;
             }
-
-            return null;
         }
 
         private List<WunderlistListData> FilterData(string response)
