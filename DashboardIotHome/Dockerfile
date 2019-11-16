@@ -15,7 +15,7 @@ FROM dotnetbuilder AS publish
 RUN dotnet publish "DashboardIotHome.csproj" -c Release -o /app
 WORKDIR /app
 
-# base node image
+# base node image for frontend
 FROM node:12.13 as nodebuilder
 WORKDIR /app
 # install and cache app dependencies
