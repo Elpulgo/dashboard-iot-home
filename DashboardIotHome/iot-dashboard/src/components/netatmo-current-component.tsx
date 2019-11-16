@@ -1,12 +1,15 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import NetatmoApi from "../services/netatmo-api";
 import { NetatmoCurrent } from "../models/netatmo";
 import "./netatmo.css";
 import Spinner from "../utils/spinner";
 import { NetatmoCurrentDataComp } from "./netatmo-current-data";
 
-type NetatmoCurrentState = { currentData: NetatmoCurrent[], isLoading: boolean };
+type NetatmoCurrentState = {
+    currentData: NetatmoCurrent[],
+    isLoading: boolean,
+    error: string | null
+};
 
 
 export default class NetatmoCurrentComponent extends React.Component<{}, NetatmoCurrentState> {
@@ -17,7 +20,7 @@ export default class NetatmoCurrentComponent extends React.Component<{}, Netatmo
     constructor(props: Readonly<any>) {
         super(props);
         this._netatmoApi = new NetatmoApi();
-        this.state = { currentData: [], isLoading: true };
+        this.state = { currentData: [], isLoading: true, error: null };
     }
 
     public async componentDidMount() {
@@ -34,6 +37,7 @@ export default class NetatmoCurrentComponent extends React.Component<{}, Netatmo
 
         } catch (error) {
             console.error(error);
+            this.setState({ error: error.response.data });
         } finally {
             this.setState({ isLoading: false });
         }
@@ -61,8 +65,8 @@ export default class NetatmoCurrentComponent extends React.Component<{}, Netatmo
     render() {
         if (this.state.isLoading) {
             return (<Spinner isLoading={this.state.isLoading} />);
-        } else if (this.state.currentData.length < 1 && !this.state.isLoading) {
-            return (<h4>Failed to load Philips Hue status =(</h4>);
+        } else if (this.state.currentData == null || (this.state.currentData.length < 1 && !this.state.isLoading)) {
+            return (<h4>Failed to load Philips Hue status =( {this.state.error}</h4>);
         } else {
             return (
                 <div className="netatmo-current-container">
