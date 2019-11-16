@@ -50,9 +50,8 @@ namespace DashboardIotHome.Repositories.Netatmo
             catch (Exception exception)
             {
                 Log.Error(exception, $"Failed to get current data from Netatmo: '{exception.Message}'");
+                throw;
             }
-
-            return null;
         }
 
         public async Task<List<NetatmoSerieViewModel>> GetHistoricDataAsync(DateTime start, DateTime end)
@@ -92,9 +91,8 @@ namespace DashboardIotHome.Repositories.Netatmo
             catch (Exception exception)
             {
                 Log.Error(exception, $"Failed to get historic data from Netatmo: '{exception.Message}'");
+                throw;
             }
-
-            return null;
         }
     }
 }
