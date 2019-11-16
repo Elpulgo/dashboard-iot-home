@@ -9,10 +9,10 @@ COPY DashboardIotHome/DashboardIotHome.csproj DashboardIotHome/DashboardIotHome/
 RUN dotnet restore DashboardIotHome/DashboardIotHome/DashboardIotHome.csproj
 COPY . ./DashboardIotHome/DashboardIotHome
 WORKDIR /DashboardIotHome/src/DashboardIotHome
-RUN dotnet build DashboardIotHome.csproj -c Release -o /app
+RUN dotnet build DashboardIotHome/DashboardIotHome/DashboardIotHome.csproj -c Release -o /app
 
 FROM dotnetbuilder AS publish
-RUN dotnet publish "DashboardIotHome/DashboardIotHome.csproj" -c Release -o /app
+RUN dotnet publish "DashboardIotHome/DashboardIotHome/DashboardIotHome.csproj" -c Release -o /app
 WORKDIR /app
 
 # base node image
