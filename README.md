@@ -17,7 +17,8 @@ Is configured in dashboard-iot-home/.env, which is used by docker-compose file.
 Below is example of .env file, which tokens and client ids are needed.
 
 Before launching it the first time, press the button on the Hue bridge in order for the app to connect to your Bridge ip address
-and retireve a secret appkey. Which is then stored locally in the docker container, and used on subsequent runs.
+and retireve a secret appkey. Which is then stored locally in the docker container, and used on subsequent runs. 
+
 
 ## Example configuration for docker
 ```
