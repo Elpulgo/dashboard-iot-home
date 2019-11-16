@@ -1,11 +1,14 @@
 import React from 'react';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import "./wunderlist.css";
 import WunderlistApi from "../services/wunderlist-api";
 import { Wunderlist } from "../models/wunderlist";
 import Spinner from "../utils/spinner";
 
-type WunderlistState = { wunderlists: Wunderlist[], isLoading: boolean };
+type WunderlistState = {
+    wunderlists: Wunderlist[],
+    isLoading: boolean,
+    error: string | null
+};
 
 export default class WunderlistComponent extends React.Component<{}, WunderlistState> {
 
@@ -15,7 +18,7 @@ export default class WunderlistComponent extends React.Component<{}, WunderlistS
     constructor(props: Readonly<any>) {
         super(props);
         this._wunderlistApi = new WunderlistApi();
-        this.state = { wunderlists: [], isLoading: true };
+        this.state = { wunderlists: [], isLoading: true, error: null };
     }
 
     public async componentDidMount() {
@@ -32,6 +35,7 @@ export default class WunderlistComponent extends React.Component<{}, WunderlistS
 
         } catch (error) {
             console.error(error);
+            this.setState({ error: error.response.data });
         } finally {
             setTimeout(() => {
                 this.setState({ isLoading: false });
@@ -61,10 +65,10 @@ export default class WunderlistComponent extends React.Component<{}, WunderlistS
     render() {
         if (this.state.isLoading) {
             return (<Spinner isLoading={this.state.isLoading} />);
-        } else if (this.state.wunderlists.length < 1 && !this.state.isLoading) {
+        } else if (this.state.wunderlists == null || (this.state.wunderlists.length < 1 && !this.state.isLoading)) {
             return (
                 <div className="wunderlist-container">
-                    <h4>Failed to load any wunderlists =(</h4>
+                    <h4>Failed to load any wunderlists =( {this.state.error}</h4>
                 </div>
             );
         } else {

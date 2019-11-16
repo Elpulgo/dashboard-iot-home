@@ -5,7 +5,11 @@ import { Light } from "../models/philips-hue";
 import "./philips-hue.css";
 import Spinner from "../utils/spinner";
 
-type HueState = { lights: Light[], isLoading: boolean; };
+type HueState = {
+    lights: Light[],
+    isLoading: boolean,
+    error: string | null
+};
 
 export default class HueComponent extends React.Component<{}, HueState> {
 
@@ -15,7 +19,7 @@ export default class HueComponent extends React.Component<{}, HueState> {
     constructor(props: Readonly<any>) {
         super(props);
         this._hueApi = new PhilipsHueApi();
-        this.state = { lights: [], isLoading: true };        
+        this.state = { lights: [], isLoading: true, error: null };
     }
 
     public async componentDidMount() {
@@ -30,6 +34,7 @@ export default class HueComponent extends React.Component<{}, HueState> {
             this.setState({ lights: hueResponse.data.lights })
         } catch (error) {
             console.error(error);
+            this.setState({ error: error.response.data });
         } finally {
             setTimeout(() => {
                 this.setState({ isLoading: false });
@@ -53,10 +58,10 @@ export default class HueComponent extends React.Component<{}, HueState> {
     render() {
         if (this.state.isLoading) {
             return (<Spinner isLoading={this.state.isLoading} />);
-        } else if (this.state.lights.length < 1 && !this.state.isLoading) {
+        } else if (this.state.lights == null || (this.state.lights.length < 1 && !this.state.isLoading)) {
             return (
                 <div className="lights-container">
-                    <h4>Failed to load hue lights =(</h4>
+                    <h4>Failed to load hue lights =( {this.state.error}</h4>
                 </div>
             );
         } else {

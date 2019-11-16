@@ -4,7 +4,11 @@ import { NetatmoSerie } from "../models/netatmo";
 import HighchartsWrapper from "./Highcharts";
 import Spinner from "../utils/spinner";
 
-type NetatmoSeriesState = { series: NetatmoSerie[], isLoading: boolean };
+type NetatmoSeriesState = {
+    series: NetatmoSerie[],
+    isLoading: boolean,
+    error: string | null
+};
 
 
 export default class NetatmoSeriesComponent extends React.Component<{}, NetatmoSeriesState> {
@@ -15,7 +19,7 @@ export default class NetatmoSeriesComponent extends React.Component<{}, NetatmoS
     constructor(props: Readonly<any>) {
         super(props);
         this._netatmoApi = new NetatmoApi();
-        this.state = { series: [], isLoading: true };
+        this.state = { series: [], isLoading: true, error: null };
     }
 
     public async componentDidMount() {
@@ -32,6 +36,7 @@ export default class NetatmoSeriesComponent extends React.Component<{}, NetatmoS
 
         } catch (error) {
             console.error(error);
+            this.setState({ error: error.response.data });
         } finally {
             this.setState({ isLoading: false });
         }
@@ -44,9 +49,9 @@ export default class NetatmoSeriesComponent extends React.Component<{}, NetatmoS
     render() {
         if (this.state.isLoading) {
             return (<Spinner isLoading={this.state.isLoading} />);
-        } else if (this.state.series.length < 1 && !this.state.isLoading) {
+        } else if (this.state.series == null || (this.state.series.length < 1 && !this.state.isLoading)) {
             return (
-                <h4>Couldn't load any series =(</h4>
+                <h4>Couldn't load any series =( {this.state.error}</h4>
             );
         } else {
             return (
