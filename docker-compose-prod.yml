@@ -5,7 +5,7 @@ services:
   backend:
     restart: always
     privileged: true
-    container_name: backend-iot
+    image: elpulgo/dashboard_iot_home:__VERSION__
     ports:      
       - "8080:80"
     networks:
@@ -15,7 +15,7 @@ services:
       dockerfile: DashboardIotHome/Dockerfile
     volumes:
       - ~/iot-dashboard/data:/app/data
-    enivornment:
+    environment:
       - Netatmo__ClientId=
       - Netatmo__ClientSecret=
       - Netatmo__DeviceId=
@@ -26,6 +26,9 @@ services:
       - Wunderlist__AccessToken=
       - WunderList__ListFirst=
       - WunderList__ListSecond=
+      - WunderList__ListThird=
+      - WunderList__ListFourth=
+      - WunderList__ListFifth=
       - PhilipsHue__BridgeIp=
 
 networks:
