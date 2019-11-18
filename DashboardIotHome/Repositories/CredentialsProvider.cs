@@ -11,7 +11,7 @@ namespace DashboardIotHome.Repositories
 {
     public class CredentialsProvider : ICredentials
     {
-        private const string DeviceName = "b5c92462-aede-47de-bb54-";
+        private const string DeviceName = "b5c92462-aede-47de";
         private const string AppName = "IoTHomeDashboard";
 
         private readonly HttpWrapper m_HttpWrapper;
