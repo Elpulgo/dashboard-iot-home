@@ -14,7 +14,7 @@ services:
       context: .
       dockerfile: DashboardIotHome/Dockerfile
     volumes:
-      - ~/iot-dashboard/data:/app/data
+      - ~/iot-dashboard/data:/app/settings
     environment:
       - Netatmo__ClientId=
       - Netatmo__ClientSecret=
