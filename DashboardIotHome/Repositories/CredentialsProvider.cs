@@ -46,9 +46,7 @@ namespace DashboardIotHome.Repositories
 
         public async Task<NetatmoOAuth> GetNetatmoOAuthAsync()
         {
-            if (Token != null && DateTime.UtcNow.AddMinutes(-5) <= Token.Expires)
-                return Token;
-
+ 
             var body = new Dictionary<string, string>
             {
                 {"grant_type", "password"},
