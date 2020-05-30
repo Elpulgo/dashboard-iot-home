@@ -20,4 +20,4 @@ jobs:
     - name: Install dependencies
       run: dotnet restore ./DashboardIotHome/DashboardIotHome.csproj
     - name: Build
-      run: dotnet build ../DashboardIotHome/DashboardIotHome.csproj -configuration Release --no-restore
+      run: dotnet build ./DashboardIotHome/DashboardIotHome.csproj -configuration Release --no-restore
