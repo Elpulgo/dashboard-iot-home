@@ -1,5 +1,5 @@
-![Build Windows Latest](https://github.com/Elpulgo/dashboard-iot-home/workflows/Build%20Windows%20Latest/badge.svg)
-![Build Ubuntu Latest](https://github.com/Elpulgo/dashboard-iot-home/workflows/Build%20Ubuntu%20Latest/badge.svg)
+![Build Windows Latest](https://github.com/Elpulgo/dashboard-iot-home/workflows/Build%20Windows%20Latest/badge.svg?branch=master)
+![Build Ubuntu Latest](https://github.com/Elpulgo/dashboard-iot-home/workflows/Build%20Ubuntu%20Latest/badge.svg?branch=master)
 
 # dashboard-iot-home
 Dashboard for IoT API:s
